@@ -6,6 +6,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { LayoutComponent } from './layout.component';
 import { StudentModule } from '../student/student.module';
+import { AuthModule } from '../auth/auth.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { StudentModule } from '../student/student.module';
   imports: [
     CommonModule,
     LayoutRoutingModule,
-    StudentModule
+    StudentModule,
+    AuthModule
   ]
 })
 export class LayoutModule { }

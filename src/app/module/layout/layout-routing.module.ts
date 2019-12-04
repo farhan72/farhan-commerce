@@ -1,3 +1,4 @@
+import { AuthGuard } from './../../shared/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {LayoutComponent} from './layout.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: LayoutComponent,
+        canActivate: [AuthGuard],
         children: [
           {path: 'student-list', component: StudenListComponent},
           {path: '', redirectTo: 'student-list', pathMatch: 'full'}
