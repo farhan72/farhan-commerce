@@ -4,8 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './module/layout/layout.module';
-import {LazyLoadImageModule, scrollPreset} from 'ng-lazyload-image';
-import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -14,10 +12,7 @@ import { from } from 'rxjs';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LayoutModule,
-    LazyLoadImageModule.forRoot({
-      preset: scrollPreset
-    })
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
