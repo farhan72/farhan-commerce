@@ -3,32 +3,27 @@ import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, CanDeactivate } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginComponent } from '../module/auth/login/login.component';
+import {AuthService} from './services/auth.service';
+import {map, take, tap} from 'rxjs/operators';
+import {loggedIn} from '@angular/fire/auth-guard';
+import {isNull} from 'util';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate, CanActivateChild, CanLoad, CanDeactivate<LayoutComponent> {
-  constructor(private route: Router) {}
-  canActivate() {
-    let authToken = 12345678;
-    if (authToken === null) {
-      this.route.navigateByUrl('login');
-      return false;
-    } else {
-      return true;
-    }
-  }
-  canDeactivate() {
-    return true;
-  }
-  canActivateChild(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
-  }
-  canLoad(
-    route: Route,
-    segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
-    return true;
+export class AuthGuard implements CanActivate {
+  constructor(private route: Router,
+              private authService: AuthService) {}
+  canActivate(next, state) {
+    const status = this.authService.user$.pipe(
+      take(1),
+      map(user => !!user), // map to boolean
+      tap(loggedIn => {
+        if (!loggedIn) {
+          this.route.navigate(['/login']);
+        }
+      })
+    );
+    return status;
   }
 }

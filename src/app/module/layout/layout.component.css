@@ -1,0 +1,41 @@
+::ng-deep .sidebar {
+  height: 100vh;
+  background: #fbfbfb;
+  box-shadow: 2px 1px 5px rgba(0,0,0,.3);
+}
+::ng-deep .sidebar-link {
+  transition: all .4s;
+}
+::ng-deep .sidebar-link:hover {
+  background-color: #c4e0cd;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+::ng-deep  .sidebar {
+    width: 100vw;
+    position: static;
+    height: auto;
+  }
+
+::ng-deep  .top-navbar {
+    width: 100vw;
+    position: static;
+  }
+}
+
+::ng-deep .active {
+  background-color: #c4e0cd;
+}
+
+::ng-deep .color-danger {
+  color: #dc3545;
+}
+
+::ng-deep .color-danger:hover {
+  color: #fff;
+}
+
+::ng-deep .bottom-border {
+  border-bottom: 1px groove #f3f3f3;
+}

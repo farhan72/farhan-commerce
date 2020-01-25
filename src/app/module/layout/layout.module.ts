@@ -7,6 +7,8 @@ import { HeaderComponent } from './header/header.component';
 import { LayoutComponent } from './layout.component';
 import { StudentModule } from '../student/student.module';
 import { AuthModule } from '../auth/auth.module';
+import {AuthService} from '../../shared/services/auth.service';
+import {AuthGuard} from '../../shared/auth.guard';
 
 
 @NgModule({
@@ -16,6 +18,7 @@ import { AuthModule } from '../auth/auth.module';
     LayoutRoutingModule,
     StudentModule,
     AuthModule
-  ]
+  ],
+  providers: [AuthService, AuthGuard]
 })
 export class LayoutModule { }
