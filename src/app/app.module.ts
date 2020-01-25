@@ -12,6 +12,8 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgxLoadingModule } from 'ngx-loading';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ToastrModule} from 'ngx-toastr';
 
 
 @NgModule({
@@ -24,6 +26,9 @@ import { NgxLoadingModule } from 'ngx-loading';
     LayoutModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
     NgxLoadingModule.forRoot({}),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,

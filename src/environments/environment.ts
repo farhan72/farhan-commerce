@@ -19,5 +19,6 @@ export const environment = {
   },
 
   // API Endpoint
-  API_URL: 'https://www.googleapis.com/youtube/v3/'
+  API_YOUTUBE: 'https://www.googleapis.com/youtube/v3/',
+  API_BACKEND : 'http://localhost/farhan-rest/'
 };

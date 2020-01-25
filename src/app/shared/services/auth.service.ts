@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
-import {Policy} from '../model/policy.model';
+import {Policy} from '../model/responses/policy.model';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {Observable, of} from 'rxjs';
 import {Router} from '@angular/router';
-import {switchMap} from 'rxjs/operators';
+import {map, switchMap} from 'rxjs/operators';
 import {auth} from 'firebase';
-import {User} from '../model/user.model';
+import {User} from '../model/responses/user.model';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Path} from '../path';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,8 @@ export class AuthService {
   user$: Observable<any>;
   constructor(private fireStore: AngularFirestore,
               private fireAuth: AngularFireAuth,
-              private router: Router) {
+              private router: Router,
+              private http: HttpClient) {
     this.user$ = fireAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -27,12 +30,21 @@ export class AuthService {
     );
   }
 
-  async login() {
+  async loginWithGoogle() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.fireAuth.auth.signInWithPopup(provider);
     localStorage.setItem('token', credential.user.uid);
     this.router.navigate(['/dashboard']);
     return this.updateUserData(credential.user);
+  }
+
+  login(request) {
+    console.log(Path.AUTH_LOGIN);
+    return this.http.post<any>(Path.AUTH_LOGIN, request).pipe(
+      map((result) => {
+        return result;
+      })
+    );
   }
 
   async logout() {
