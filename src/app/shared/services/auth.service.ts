@@ -18,6 +18,11 @@ export class AuthService {
   user$: Observable<any>;
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json, text/plain;charset=UTF-8, application/xml, application/x-www-form-urlencoded'
+    })
+  }
   constructor(private fireStore: AngularFirestore,
               private fireAuth: AngularFireAuth,
               private router: Router,
@@ -33,12 +38,6 @@ export class AuthService {
         }
       })
     );
-  }
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
   }
 
   async loginWithGoogle() {

@@ -15,8 +15,8 @@ const routes: Routes = [
         component: LayoutComponent,
         canActivate: [AuthGuard],
         children: [
-          {path: 'student-list', component: StudenListComponent},
-          {path: '', redirectTo: 'student-list', pathMatch: 'full'}
+          {path: 'student-list', component: StudenListComponent}
+
         ]
       }
     ]
