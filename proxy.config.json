@@ -1,7 +1,6 @@
 {
-  "/farhan-rest": {
-    "target": "http://localhost",
-    "secure": false,
-    "changeOrigin": true
+  "/v1": {
+    "target": "http://farhan_epic",
+    "secure": false
   }
 }

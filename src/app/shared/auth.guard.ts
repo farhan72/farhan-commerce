@@ -15,15 +15,28 @@ export class AuthGuard implements CanActivate {
   constructor(private route: Router,
               private authService: AuthService) {}
   canActivate(next, state) {
-    const status = this.authService.user$.pipe(
-      take(1),
-      map(user => !!user), // map to boolean
-      tap(loggedIn => {
-        if (!loggedIn) {
-          this.route.navigate(['/login']);
-        }
-      })
-    );
+    let status: any;
+
+    const token = localStorage.getItem('token');
+    if (!isNull(token)) {
+      const currentUser = this.authService.currentUserValue;
+      if (currentUser) {
+        status = true;
+      } else {
+        this.route.navigate(['/login']);
+        status = false;
+      }
+    } else {
+      status = this.authService.user$.pipe(
+        take(1),
+        map(user => !!user), // map to boolean
+        tap(loggedIn => {
+          if (!loggedIn) {
+            this.route.navigate(['/login']);
+          }
+        })
+      );
+    }
     return status;
   }
 }

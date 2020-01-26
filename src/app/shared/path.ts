@@ -7,5 +7,5 @@ export class Path {
 
   // EndPoint
   static GET_YT_ACTIVITY = Path.API_YT + `playlists?key=${Path.KEY}`;
-  static AUTH_LOGIN = Path.API_V1 + 'auth/login';
+  static AUTH_LOGIN = Path.API_V1 + 'user/login';
 }

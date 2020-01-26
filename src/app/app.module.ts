@@ -25,10 +25,12 @@ import {ToastrModule} from 'ngx-toastr';
     AppRoutingModule,
     LayoutModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 1500
+    }),
     NgxLoadingModule.forRoot({}),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,

@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     this.checkSubmit = true;
     const value = this.loginForm.value;
     const request = {
-      username: value.username,
+      email: value.username,
       password: value.password
     };
     if (this.loginForm.invalid) {
@@ -50,23 +50,17 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authService.login(request).subscribe((result: Result<any>) => {
-      if (result.status === true) {
-        localStorage.setItem('token', result.data);
+      console.log(result);
+      if (result.status === 'success') {
+        this.toastr.success('Success Login')
+        localStorage.setItem('token', JSON.stringify(result.data));
         this.router.navigate(['/dashboard']);
       }
+    }, (error) => {
+      this.toastr.warning(error);
     });
   }
   loginGoogle() {
     return this.authService.loginWithGoogle();
-    // const req = {
-    //   part: 'snippet,contentDetails',
-    //   channelId: 'UC_x5XG1OV2P6uZZ5FSM9Ttw',
-    //   maxResults: 5
-    // }
-    // this.authService.get(req.part, req.channelId, req.maxResults).subscribe((result) => {
-    //   this.youtubeData = result;
-    //   console.log(this.youtubeData);
-    // });
-    // this.router.navigateByUrl('dashboard');
   }
 }

@@ -10,7 +10,7 @@
               <input type="text" formControlName="username">
               <label>Username</label>
             </div>
-            <div class="text-danger font-weight-bold"
+            <div class="text-danger"
                  *ngIf="(username_?.dirty || username_?.touched || checkSubmit) && username_?.errors?.required">
               {{message}}
             </div>
@@ -18,7 +18,7 @@
               <input type="password" formControlName="password">
               <label>Password</label>
             </div>
-            <div class="text-danger font-weight-bold"
+            <div class="text-danger"
                  *ngIf="(password_?.dirty || password_?.touched || checkSubmit) && password_?.errors?.required">
               {{message}}
             </div>
