@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authService.login(request).subscribe((result: Result<any>) => {
-      console.log(result);
       if (result.status === 'success') {
         this.toastr.success('Success Login')
         localStorage.setItem('token', JSON.stringify(result.data));

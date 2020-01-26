@@ -15,7 +15,6 @@ import { NgxLoadingModule } from 'ngx-loading';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ToastrModule} from 'ngx-toastr';
 
-
 @NgModule({
   declarations: [
     AppComponent
@@ -29,7 +28,9 @@ import {ToastrModule} from 'ngx-toastr';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 1500
+      timeOut: 2000,
+      easing: 'ease-in',
+      easeTime: 300
     }),
     NgxLoadingModule.forRoot({}),
     AngularFireModule.initializeApp(environment.firebaseConfig),
