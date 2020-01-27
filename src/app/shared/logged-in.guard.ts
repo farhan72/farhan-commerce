@@ -11,7 +11,7 @@ export class LoggedInGuard implements CanActivate {
     let status: boolean;
     const token = localStorage.getItem('token');
     if (!isNull(token)) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/']);
       status = false;
     } else {
       status = true;

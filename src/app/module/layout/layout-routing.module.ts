@@ -10,16 +10,9 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      {
-        path: 'dashboard',
-        component: LayoutComponent,
-        canActivate: [AuthGuard],
-        children: [
-          {path: 'student-list', component: StudenListComponent}
-
-        ]
-      }
-    ]
+      {path: 'student-list', component: StudenListComponent}
+    ],
+    canActivate: [AuthGuard],
   },
 ];
 

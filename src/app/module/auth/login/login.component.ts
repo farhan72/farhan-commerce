@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
       if (result.status === 'success') {
         this.toastr.success('Success Login')
         localStorage.setItem('token', JSON.stringify(result.data));
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/']);
       }
     }, (error) => {
       this.toastr.warning(error);
